@@ -10,7 +10,7 @@ namespace Catalog.API.Repositories
 
         public ProductRepository(ICatalogContext context)
         {
-            _context= context ?? throw new ArgumentNullException(nameof(context));  
+            _context= context ?? throw new ArgumentNullException(nameof(context));  //ako je leva strana (context) null ili undefined vraca desnu stranu
         }
 
         public async Task CreateProduct(Product product)

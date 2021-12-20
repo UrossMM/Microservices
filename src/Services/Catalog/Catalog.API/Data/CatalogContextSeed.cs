@@ -7,10 +7,10 @@ namespace Catalog.API.Data
     {
         public static void SeedData(IMongoCollection<Product> productCollection)
         {
-            bool existProduct = productCollection.Find(p => true).Any();
+            bool existProduct = productCollection.Find(p => true).Any(); //proverava da li postoji bar 1 proizvod
             if(!existProduct)
             {
-                productCollection.InsertManyAsync(GetPreconfiguredProducts());
+                productCollection.InsertManyAsync(GetPreconfiguredProducts()); //ako u bazi ne postoji nijedan proizvod dodajemo ove hardkodirane proizvode
             }
         }
 
