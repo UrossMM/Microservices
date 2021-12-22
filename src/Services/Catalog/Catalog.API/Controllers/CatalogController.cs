@@ -18,7 +18,7 @@ namespace Catalog.API.Controllers
             this.logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet] //   /api/v1/Catalog
         [ProducesResponseType(typeof(IEnumerable<Product>),(int) HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts() 
         {
@@ -26,7 +26,7 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id:length(24)}", Name ="GetProduct")]
+        [HttpGet("{id:length(24)}", Name ="GetProduct")] //   /api/v1/Catalog/{id}
         //moze da se desi da naredna fja vrati listu proizvoda i odgovor 200 od servera ili da ne nadje nijedan proizvod
         [ProducesResponseType(typeof(Product), (int) HttpStatusCode.OK)] //ako nadje proizvode i onda vraca i 200
         [ProducesResponseType( (int) HttpStatusCode.NotFound)]//ako ne nadje nijedan proizvod
@@ -41,7 +41,7 @@ namespace Catalog.API.Controllers
             return Ok(product); 
         }
 
-        [Route("[action]/{category}", Name ="GetProductByCategory")]
+        [Route("[action]/{category}", Name ="GetProductByCategory")] //   /api/v1/Catalog/GetProductByCategory/{category}
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int) HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategory(string category)
@@ -50,7 +50,7 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
-        [HttpPost]
+        [HttpPost] //   /api/v1/Catalog
         [ProducesResponseType(typeof(Product),(int) HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
         {
@@ -59,14 +59,14 @@ namespace Catalog.API.Controllers
             //a to je fja GetProductById(string id) ???
         }
 
-        [HttpPut]
+        [HttpPut]  //   /api/v1/Catalog
         [ProducesResponseType(typeof(Product),(int)HttpStatusCode.OK)]
         public async Task<ActionResult> UpdateProduct([FromBody] Product product) //IActionResult jer ne vracamo nikakav specifican odgovor, vraca samo 200 
         {
             return Ok(await _repository.UpdateProduct(product));
         }
 
-        [HttpDelete("{id:length(24)}",Name ="DeleteProduct")]
+        [HttpDelete("{id:length(24)}",Name ="DeleteProduct")]  //    /api/v1/Catalog/{id}
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteProductById(string id)
         {
