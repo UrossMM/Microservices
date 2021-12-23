@@ -67,7 +67,7 @@ namespace Catalog.API.Controllers
         }
 
         [HttpDelete("{id:length(24)}",Name ="DeleteProduct")]  //    /api/v1/Catalog/{id}
-        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)] //da li ovde treba typeof Product ili typeof void ?
         public async Task<IActionResult> DeleteProductById(string id)
         {
             return Ok(await _repository.DeleteProduct(id));

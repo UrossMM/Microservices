@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ICatalogContext, CatalogContext>();
+builder.Services.AddScoped<ICatalogContext, CatalogContext>(); //IProductRepository koristi ICatalogContext tako da i ICatalogContext uvodimo
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
